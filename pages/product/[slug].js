@@ -16,7 +16,6 @@ function ProductDetails({ product, products }) {
 
   const handleBuyNow = () => {
     onAdd(product,qty)
-
     setShowCart(true)
   }
 
@@ -114,11 +113,11 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: true
+    fallback: false
   }
 }
 
-export const getStaticProps = async ({ params: { slug } }) => {
+export async function getStaticProps({ params: { slug } }){
   const query = `*[_type == "product" && slug.current == '${slug}'][0]`
   const productsQuery = '*[_type == "product"]'
 

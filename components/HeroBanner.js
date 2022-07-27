@@ -3,7 +3,8 @@ import Link from 'next/link'
 import {urlFor} from  '../lib/client'
 
 function HeroBanner({heroBanner, products}) {
-  const slug = products[0].slug.current
+  const slug = products[1].slug.current
+
   return (
     <div className='hero-banner-container'>
       <div>
