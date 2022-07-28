@@ -17,6 +17,6 @@ module.exports = {
     "react/prop-type": "off",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
-    "import/no-duplicates": true
+    "import/no-duplicates": 1
   }
 }
