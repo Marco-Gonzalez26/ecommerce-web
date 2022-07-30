@@ -14,7 +14,6 @@ import { useStateContext } from '../context/StateContext'
 import { urlFor } from '../lib/client'
 import getStripe from 'lib/getStripe'
 
-
 function Cart() {
   const cartRef = useRef()
   const {
@@ -37,13 +36,13 @@ function Cart() {
       body: JSON.stringify(cartItems)
     })
 
-    if(res.statusCode === 500) return;
+    if (res.statusCode === 500) return
 
     const data = await res.json()
 
     toast.loading('Redirecting to payment page...')
 
-    stripe.redirectToCheckout({sessionId: data.id})
+    stripe.redirectToCheckout({ sessionId: data.id })
   }
 
   return (
@@ -77,6 +76,7 @@ function Cart() {
           {cartItems.length >= 1 &&
             cartItems.map((item, index) => (
               <div className="product" key={item._id}>
+                {console.log(item?.image[0])}
                 <img
                   src={urlFor(item?.image[0])}
                   className="cart-product-image"
@@ -88,30 +88,40 @@ function Cart() {
                   </div>
                   <div className="flex bottom">
                     <p className="quantity-desc">
-                      <span className="minus" onClick={() => toggleCartItemQuantity(item?._id, 'dec')}>
+                      <span
+                        className="minus"
+                        onClick={() => toggleCartItemQuantity(item?._id, 'dec')}
+                      >
                         <AiOutlineMinus />
                       </span>
                       <span className="num">{item.quantity}</span>
-                      <span className="plus" onClick={() => toggleCartItemQuantity(item?._id, 'inc')}>
+                      <span
+                        className="plus"
+                        onClick={() => toggleCartItemQuantity(item?._id, 'inc')}
+                      >
                         <AiOutlinePlus />
                       </span>
                     </p>
-                    <button type="button" className="remove-item" onClick={() => onRemove(item)}>
-                    <TiDeleteOutline />
-                  </button>
+                    <button
+                      type="button"
+                      className="remove-item"
+                      onClick={() => onRemove(item)}
+                    >
+                      <TiDeleteOutline />
+                    </button>
                   </div>
                 </div>
               </div>
             ))}
         </div>
         {cartItems.length >= 1 && (
-          <div className='cart-bottom'>
-            <div className='total'>
+          <div className="cart-bottom">
+            <div className="total">
               <h3>Subtotal: </h3>
               <h3> ${totalPrice}</h3>
             </div>
-            <div className='btn-container'>
-              <button type='button' className='btn' onClick={handleCheckOut}>
+            <div className="btn-container">
+              <button type="button" className="btn" onClick={handleCheckOut}>
                 Pay with Stripe
               </button>
             </div>

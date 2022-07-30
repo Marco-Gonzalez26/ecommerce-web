@@ -2,7 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import {urlFor} from '../lib/client'
 
-function FooterBanner({footerBanner: {discount, largeText1, largeText2, saleTime, smallText, midText, product, buttonText, image, desc}}) {
+function FooterBanner({footerBanner: {discount, largeText1, largeText2, saleTime, smallText, midText, product, buttonText, image, desc}, products}) {
+  const slug = products[1].slug.current
   return (
     <div className='footer-banner-container'>
       <div className='banner-desc'>
@@ -16,7 +17,7 @@ function FooterBanner({footerBanner: {discount, largeText1, largeText2, saleTime
           <p>{smallText}</p>
           <p>{midText}</p>
           <p>{desc}</p>
-          <Link href={`/product/${product}`}>
+          <Link href={`/product/${slug}`}>
             <button type='button'>{buttonText}</button>
           </Link>
         </div>
