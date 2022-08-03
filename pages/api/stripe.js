@@ -1,7 +1,6 @@
 import Stripe from 'stripe'
-import { NEXT_PUBLIC_STRIPE_SECRET_KEY } from 'no-commit'
 
-const key = process.env.NODE_ENV === 'development' ? NEXT_PUBLIC_STRIPE_SECRET_KEY : process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY
+const key = process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY
 
 const stripe = new Stripe(key)
 
